@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sravya Mandava | Applied Mathematics and Data Science</title>
+<meta name="description" content="Sravya Mandava is an Applied Mathematics and Data Science & Analytics student at Case Western Reserve University researching AI/ML for healthcare and mathematical models of biological systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #F7F4F8;
+  --paper-2: #EFEAF3;
+  --ink: #1E1633;
+  --ink-soft: #4B4262;
+  --line: #D6CDE2;
+  --hema: #4A2E8A;
+  --hema-text: #4A2E8A;
+  --eosin: #C93D6B;
+  --on-hema: #FFFFFF;
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #16111F;
+    --paper-2: #1F1830;
+    --ink: #F1ECF8;
+    --ink-soft: #B9AFD0;
+    --line: #3A2F54;
+    --hema: #A98BE8;
+    --hema-text: #BBA4F0;
+    --eosin: #F28BAA;
+    --on-hema: #16111F;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #16111F;
+  --paper-2: #1F1830;
+  --ink: #F1ECF8;
+  --ink-soft: #B9AFD0;
+  --line: #3A2F54;
+  --hema: #A98BE8;
+  --hema-text: #BBA4F0;
+  --eosin: #F28BAA;
+  --on-hema: #16111F;
+}
+html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 72px); scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--hema-text); text-underline-offset: 3px; }
+a:hover { color: var(--eosin); }
+:focus-visible { outline: 3px solid var(--eosin); outline-offset: 3px; border-radius: 2px; }
+.wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+header.site {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; flex-wrap: wrap; }
+.brand { font-family: var(--display); font-weight: 700; font-size: 1.125rem; color: var(--ink); text-decoration: none; }
+nav ul { list-style: none; display: flex; gap: 4px; margin: 0; padding: 0; flex-wrap: wrap; }
+nav a { display: inline-block; padding: 10px 12px; color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+nav a:hover { color: var(--ink); }
+
+/* Hero */
+.hero { padding: 72px 0 56px; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 48px; align-items: center; }
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(3rem, 8.5vw, 6.25rem);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  margin: 0 0 28px;
+}
+.hero .lede { font-size: 1.3rem; line-height: 1.5; max-width: 34ch; margin: 0 0 12px; }
+.hero .where { color: var(--ink-soft); margin: 0 0 32px; max-width: 46ch; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px;
+  font-family: var(--body); font-weight: 600; font-size: 1rem;
+  text-decoration: none; border-radius: 4px; border: 2px solid var(--hema);
+}
+.btn.primary { background: var(--hema); color: var(--on-hema); }
+.btn.primary:hover { background: var(--eosin); border-color: var(--eosin); color: #fff; }
+.btn.ghost { color: var(--hema-text); background: transparent; }
+.btn.ghost:hover { border-color: var(--eosin); color: var(--eosin); }
+
+figure.portrait { margin: 0; }
+figure.portrait svg { width: 100%; height: auto; display: block; background: var(--paper-2); border-radius: 6px; }
+figure.portrait figcaption { font-size: 0.875rem; color: var(--ink-soft); margin-top: 10px; line-height: 1.5; }
+.orbit { fill: none; stroke-width: 2; stroke-linecap: round; }
+.axis { stroke: var(--line); stroke-width: 1; }
+.eq { fill: var(--ink); }
+
+/* Sections */
+section.block { padding: 64px 0; border-top: 1px solid var(--line); }
+section.block h2 {
+  font-family: var(--display); font-weight: 700; font-size: clamp(1.9rem, 4vw, 2.6rem);
+  letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 36px;
+}
+.row { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 16px 48px; padding: 28px 0; border-top: 1px solid var(--line); }
+.row:first-of-type { border-top: 0; padding-top: 0; }
+.row .meta { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5; }
+.row .meta strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 2px; }
+.row h3 { font-family: var(--display); font-weight: 700; font-size: 1.45rem; line-height: 1.25; margin: 0 0 6px; letter-spacing: -0.01em; }
+.row .sub { color: var(--ink-soft); margin: 0 0 14px; }
+.row ul { margin: 0; padding-left: 1.2rem; max-width: 68ch; }
+.row li { margin-bottom: 8px; }
+.row li::marker { color: var(--eosin); }
+.row p.plain { margin: 0; max-width: 68ch; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 18px 0 0; padding: 0; }
+.tags li {
+  margin: 0; padding: 4px 12px; font-size: 0.875rem; font-weight: 500;
+  border: 1px solid var(--line); border-radius: 999px; color: var(--ink-soft); background: var(--paper);
+}
+
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; }
+.skills h3 { font-family: var(--display); font-size: 1.15rem; margin: 0 0 10px; }
+.skills ul { list-style: none; margin: 0; padding: 0; }
+.skills li { padding: 6px 0; border-bottom: 1px solid var(--line); }
+
+.about-text { max-width: 62ch; font-size: 1.15rem; }
+.about-text p { margin: 0 0 16px; }
+
+footer.site { padding: 40px 0 56px; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 0.9rem; }
+
+@media (max-width: 820px) {
+  .hero { padding: 44px 0 40px; }
+  .hero .wrap { grid-template-columns: 1fr; gap: 36px; }
+  .row { grid-template-columns: 1fr; gap: 8px; }
+  section.block { padding: 48px 0; }
+  nav a { padding: 10px 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">Sravya Mandava</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#research">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#honors">Honors</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Sravya Mandava</h1>
+        <p class="lede">I apply AI and machine learning to healthcare, and use mathematics to model biological systems.</p>
+        <p class="where">Applied Mathematics and Data Science &amp; Analytics double major at Case Western Reserve University, with minors in Biology and English. Clinical AI-ML research intern at the Cleveland Clinic Urology Institute.</p>
+        <div class="actions">
+          <a class="btn primary" href="#research">See my projects</a>
+          <a class="btn ghost" href="https://github.com/sravman2006" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/sravya-mandava-a97a89270/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <figure class="portrait">
+        <svg id="phase" viewBox="0 0 400 400" role="img" aria-label="Phase portrait of a predator and prey population model, showing nested closed orbits around a central equilibrium point.">
+          <line class="axis" x1="14" y1="386" x2="392" y2="386"></line>
+          <line class="axis" x1="14" y1="386" x2="14" y2="8"></line>
+          <g id="orbits"></g>
+          <circle class="eq" id="eq" r="4"></circle>
+          <circle id="dot" r="6" fill="var(--eosin)" opacity="0"></circle>
+        </svg>
+        <figcaption>Predator-prey phase portrait from the Lotka-Volterra equations, computed in your browser. Each loop is one possible population cycle.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="research">
+    <div class="wrap">
+      <h2>Projects</h2>
+
+      <article class="row">
+        <div class="meta">
+          <strong>2026 to present</strong>
+          AIM-HI Lab, Cleveland Clinic Urology Institute
+        </div>
+        <div>
+          <h3>Clinical NLP for kidney cancer recurrence and metastasis</h3>
+          <p class="sub">Abstract accepted for presentation at the Society of Urological Oncology (SUO) 2026</p>
+          <ul>
+            <li>Built an automated pipeline that identifies local recurrence, metastatic disease at diagnosis, and metastatic progression after treatment, using the health records of 110 nephrectomy patients.</li>
+            <li>Used a Qwen 3.5-9B large language model to combine information from longitudinal radiology, urology, medical oncology, radiation oncology, pathology, and operative notes.</li>
+            <li>Designed structured prompts and branching logic to guide extraction across very different kinds of documentation.</li>
+            <li>Converted free-text model responses into standardized clinical labels with deterministic rule-based post-processing.</li>
+            <li>Compared automated classifications with independent manual annotations and measured performance with agreement and F1 scores.</li>
+          </ul>
+          <ul class="tags" aria-label="Tools and methods">
+            <li>Clinical NLP</li>
+            <li>LLMs (Qwen)</li>
+            <li>EHR data</li>
+            <li>F1 and agreement metrics</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="meta">
+          <strong>2025 to 2026</strong>
+          Personal project
+        </div>
+        <div>
+          <h3>Cardiovascular disease risk prediction</h3>
+          <p class="sub">About 92% overall accuracy on 300,000+ health records. <a href="https://github.com/sravman2006/Cardiovascular_Disease_ML_model" target="_blank" rel="noopener">View the code on GitHub</a></p>
+          <ul>
+            <li>Trained a Random Forest classifier to predict cardiovascular disease risk from demographic, lifestyle, biometric, and medical-history features.</li>
+            <li>Engineered predictive variables and built the full workflow of preprocessing, training, validation, and evaluation in Python and Scikit-learn.</li>
+            <li>Looked beyond accuracy to precision and recall, and documented the main limit: the data is imbalanced, so the model catches too few high-risk cases. Improving that recall is the next step.</li>
+            <li>Saved the trained model with Joblib so results are reproducible and the model can be deployed.</li>
+          </ul>
+          <ul class="tags" aria-label="Tools and methods">
+            <li>Python</li>
+            <li>Scikit-learn</li>
+            <li>Random Forest</li>
+            <li>Joblib</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="meta">
+          <strong>Sep 2025 to Dec 2025</strong>
+          Case School of Engineering, CWRU
+        </div>
+        <div>
+          <h3>Making Mixture of Experts models faster</h3>
+          <p class="sub">Supervised by Professor Shuai Xu (CSDS, CWRU)</p>
+          <ul>
+            <li>Worked with a Ph.D. student at Rice University on Mixture of Experts (MoE) research.</li>
+            <li>Developed a computational model to cut processing time and improve algorithmic efficiency in large-scale simulations.</li>
+            <li>Analyzed how individual experts behave, then applied pruning and dynamic skipping to avoid unnecessary computation.</li>
+          </ul>
+          <ul class="tags" aria-label="Tools and methods">
+            <li>Mixture of Experts</li>
+            <li>Model pruning</li>
+            <li>Dynamic skipping</li>
+            <li>Python</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="wrap">
+      <h2>Experience</h2>
+
+      <article class="row">
+        <div class="meta"><strong>2026 to present</strong>AIM-HI Lab, Cleveland Clinic Urology Institute</div>
+        <div>
+          <h3>Clinical AI-ML Research Intern, C4KC Scholar</h3>
+          <ul>
+            <li>Develop computational methods for renal cell carcinoma research using large-scale electronic health records and multimodal clinical data from radiology, pathology, urology, oncology, and operative documentation.</li>
+            <li>Build longitudinal clinical NLP pipelines and Qwen-based LLM workflows that turn unstructured notes into analysis-ready datasets for studying recurrence, metastatic disease, treatment response, and disease progression.</li>
+            <li>Check model outputs against manual annotations, then review the cases where they disagree to understand failure modes and make clinical phenotyping more reliable.</li>
+            <li>Work on a Linux/HPC environment with Git and reproducible workflows, alongside urologists, physicians, researchers, and data scientists.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="meta"><strong>Nov 2025 to present</strong>Women in Data Science (WiDS) @ CWRU</div>
+        <div>
+          <h3>Risk Manager</h3>
+          <ul>
+            <li>Assess and reduce operational, financial, and event-related risks for a university chapter of a global data science organization.</li>
+            <li>Write risk management plans for workshops, speaker events, and collaborations with students, faculty, and outside partners.</li>
+            <li>Keep events in line with university policies and WiDS global guidelines.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="meta"><strong>Sep 2025 to Dec 2025</strong>Case School of Engineering, CWRU</div>
+        <div>
+          <h3>Machine Learning Researcher</h3>
+          <p class="plain">Mixture of Experts efficiency research. Details are under Projects above.</p>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="meta"><strong>Oct 2024 to May 2026</strong>Kelvin Smith Library, CWRU</div>
+        <div>
+          <h3>Mailroom Assistant (Federal Work-Study)</h3>
+          <ul>
+            <li>Ran interlibrary loan services through OhioLINK, shipping and receiving books between libraries across Ohio.</li>
+            <li>Contributed to a library project that improved organizational efficiency.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="honors">
+    <div class="wrap">
+      <h2>Honors and conference</h2>
+
+      <article class="row">
+        <div class="meta"><strong>2026</strong>Society of Urological Oncology (SUO)</div>
+        <div>
+          <h3>Abstract accepted for presentation</h3>
+          <p class="plain">Clinical NLP and automated extraction of kidney cancer recurrence and metastatic disease from longitudinal electronic health records.</p>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="meta"><strong>2026</strong>Climb 4 Kidney Cancer</div>
+        <div>
+          <h3>Climb 4 Kidney Cancer (C4KC) Scholar</h3>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="meta"><strong>2025</strong>HackCWRU</div>
+        <div>
+          <h3>Special Recognition, $500 prize</h3>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="meta"><strong>Case Western Reserve University</strong></div>
+        <div>
+          <h3>Dean's Honor List</h3>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="education">
+    <div class="wrap">
+      <h2>Education</h2>
+      <article class="row">
+        <div class="meta"><strong>2024 to present</strong>Case Western Reserve University, Cleveland, OH</div>
+        <div>
+          <h3>B.S. in Applied Mathematics and B.S. in Data Science &amp; Analytics</h3>
+          <p class="sub">GPA 3.52, Dean's Honor List. Minors in Biology and English.</p>
+          <p class="plain"><strong>Coursework:</strong> Data Structures, Algorithms, Data Science Systems, Structured &amp; Unstructured Data, Scientific Computing, Machine Learning, Intro to Data Analysis, Linear Algebra, Differential Equations, Probability &amp; Statistics, and Mathematical Modeling of Biological Systems.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div>
+          <h3>Programming</h3>
+          <ul>
+            <li>Python</li>
+            <li>R</li>
+            <li>Java</li>
+            <li>MATLAB</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Data science and machine learning</h3>
+          <ul>
+            <li>NumPy, Pandas, Scikit-learn</li>
+            <li>Matplotlib, Seaborn, Joblib</li>
+            <li>Statistical modeling</li>
+            <li>Machine learning</li>
+            <li>Natural language processing</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Biomedical computing</h3>
+          <ul>
+            <li>Electronic health records</li>
+            <li>Clinical NLP</li>
+            <li>Longitudinal clinical data</li>
+            <li>Multimodal biomedical data</li>
+            <li>Computational oncology</li>
+            <li>Clinical phenotyping</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Computational tools</h3>
+          <ul>
+            <li>Git and GitHub</li>
+            <li>Linux</li>
+            <li>HPC and cluster computing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <div class="about-text">
+        <p>I'm interested in research on AI and machine learning for healthcare and on mathematical models of biological systems. Email is the best way to reach me.</p>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="mailto:sravyacw@gmail.com">sravyacw@gmail.com</a>
+        <a class="btn ghost" href="https://github.com/sravman2006" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/sravya-mandava-a97a89270/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">Sravya Mandava, Case Western Reserve University</div>
+</footer>
+
+<script>
+(function () {
+  var svg = document.getElementById('phase');
+  var g = document.getElementById('orbits');
+  var NS = 'http://www.w3.org/2000/svg';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function sx(x) { return 14 + x * 112; }
+  function sy(y) { return 386 - y * 112; }
+
+  // Lotka-Volterra: x' = x(1 - y), y' = y(x - 1), integrated with RK4
+  function f(x, y) { return [x * (1 - y), y * (x - 1)]; }
+  function orbit(x0) {
+    var x = x0, y = 1, h = 0.01, pts = [[x, y]];
+    for (var i = 0; i < 8000; i++) {
+      var k1 = f(x, y);
+      var k2 = f(x + h / 2 * k1[0], y + h / 2 * k1[1]);
+      var k3 = f(x + h / 2 * k2[0], y + h / 2 * k2[1]);
+      var k4 = f(x + h * k3[0], y + h * k3[1]);
+      x += h / 6 * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]);
+      y += h / 6 * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1]);
+      pts.push([x, y]);
+      if (i > 60 && Math.hypot(x - x0, y - 1) < 0.03) break;
+    }
+    pts.push([x0, 1]);
+    return pts;
+  }
+
+  var starts = [0.62, 0.45, 0.32, 0.22, 0.15];
+  var colors = ['var(--hema)', 'var(--hema)', 'var(--hema)', 'var(--eosin)', 'var(--eosin)'];
+  var paths = [];
+
+  starts.forEach(function (x0, i) {
+    var pts = orbit(x0);
+    var d = pts.map(function (p, j) { return (j ? 'L' : 'M') + sx(p[0]).toFixed(1) + ' ' + sy(p[1]).toFixed(1); }).join('');
+    var path = document.createElementNS(NS, 'path');
+    path.setAttribute('d', d + 'Z');
+    path.setAttribute('class', 'orbit');
+    path.setAttribute('stroke', colors[i]);
+    path.setAttribute('stroke-opacity', String(0.45 + i * 0.12));
+    g.appendChild(path);
+    paths.push(path);
+  });
+
+  var eq = document.getElementById('eq');
+  eq.setAttribute('cx', sx(1));
+  eq.setAttribute('cy', sy(1));
+
+  var dot = document.getElementById('dot');
+  var outer = paths[paths.length - 1];
+
+  if (reduce) { return; }
+
+  // One reveal: orbits draw in from the center outward, then a point travels the outer cycle.
+  paths.forEach(function (p, i) {
+    var len = p.getTotalLength();
+    p.style.strokeDasharray = len;
+    p.style.strokeDashoffset = len;
+    p.getBoundingClientRect();
+    p.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.4,.1,.2,1) ' + (i * 0.22) + 's';
+    p.style.strokeDashoffset = 0;
+  });
+
+  var total = outer.getTotalLength();
+  var start = null;
+  setTimeout(function () {
+    dot.setAttribute('opacity', '1');
+    function tick(ts) {
+      if (start === null) start = ts;
+      var t = ((ts - start) / 14000) % 1;
+      var pt = outer.getPointAtLength(t * total);
+      dot.setAttribute('cx', pt.x);
+      dot.setAttribute('cy', pt.y);
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }, 2400);
+})();
+</script>
+</body>
+</html>
